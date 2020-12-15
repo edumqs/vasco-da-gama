@@ -5,7 +5,7 @@ const Header = () => {
     return(
         <nav className="navbar navbar-dark bg-primary">
             <div className='navbar-left'>
-                <i class="fab fa-wpexplorer"></i>
+                <i className="fab fa-wpexplorer"></i>
                 <a className="navbar-brand" href="/">Vasco-Da-Gama</a>
             </div>
             <div className='navbar-right'>

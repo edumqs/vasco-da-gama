@@ -23,7 +23,7 @@ const Login = () => {
 
     return(
         <div className='login-form'>
-            <form method='post' action='#' autocomplete='off'>
+            <form method='post' action='#' autoComplete='off'>
                 <div className="form-group">
                     <label htmlFor="usernameInput">Username</label>
                     <input type="text" 
