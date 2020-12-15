@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import '../styles/Registration.less'
 
 const Registration = () => {
     const [firstName, setFirstName] = useState('');
@@ -32,40 +33,40 @@ const Registration = () => {
     }
 
     return(
-        <div className='registrationForm'>
+        <div className='registration-form'>
             <form method='post' action='#' autocomplete='off'>
-                <div class="form-group">
-                    <label for="usernameInput">Username</label>
+                <div className="form-group">
+                    <label htmlFor="usernameInput">Username</label>
                     <input type="text" 
-                        class="form-control"
+                        className="form-control"
                         id="usernameInput"
                         value={firstName}
                         onChange={e => handleUsernameChange(e)}
                     ></input>
                 </div>
-                <div class="form-group">
-                    <label for="passwordInput">Password</label>
+                <div className="form-group">
+                    <label htmlFor="passwordInput">Password</label>
                     <input type="password" 
-                        class="form-control"
+                        className="form-control"
                         id="passwordInput"
                         value={surname}
                         onChange={e => handlePasswordChange(e)}
                     ></input>
                 </div>
-                <div class="form-group">
-                    <label for="dobInput">Date of Birth</label>
+                <div className="form-group">
+                    <label htmlFor="dobInput">Date of Birth</label>
                     <input type="date" 
-                        class="form-control"
+                        className="form-control"
                         
                         id="dobInput"
                         value={dateOfBirth}
                         onChange={e => handleDateOfBirthChange(e)}
                     ></input>
                 </div>
-                <div class="form-group">
-                    <label for="emailInput">Email</label>
+                <div className="form-group">
+                    <label htmlFor="emailInput">Email</label>
                     <input type="email" 
-                        class="form-control"
+                        className="form-control"
                         
                         id="emailInput"
                         value={email}

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import '../styles/Login.less'
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -21,21 +22,21 @@ const Login = () => {
     }
 
     return(
-        <div className='loginForm'>
+        <div className='login-form'>
             <form method='post' action='#' autocomplete='off'>
-                <div class="form-group">
-                    <label for="usernameInput">Username</label>
+                <div className="form-group">
+                    <label htmlFor="usernameInput">Username</label>
                     <input type="text" 
-                        class="form-control"
+                        className="form-control"
                         id="usernameInput"
                         value={username}
                         onChange={e => handleUsernameChange(e)}
                     ></input>
                 </div>
-                <div class="form-group">
-                    <label for="passwordInput">Password</label>
+                <div className="form-group">
+                    <label htmlFor="passwordInput">Password</label>
                     <input type="password" 
-                        class="form-control"
+                        className="form-control"
                         id="passwordInput"
                         value={password}
                         onChange={e => handlePasswordChange(e)}
