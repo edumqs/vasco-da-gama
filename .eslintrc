@@ -15,6 +15,7 @@
         "ecmaVersion": 8
     },
     "rules": {
+        "linebreak-style" : ["error", "windows"],
         "no-await-in-loop": "error",
         "no-extra-bind": "error",
         "no-extra-label": "error",
