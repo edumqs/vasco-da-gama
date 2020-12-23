@@ -14,10 +14,8 @@ const Login = (props) => {
     };
 
     const loginUser = (e) => {
-        // This doesn't do anything yet. Will check username and password
-        // against the database, and allow access if match.
         e.preventDefault();
-        props.updateSignedIn();
+        props.retrieveUserData();
     };
 
     return (
