@@ -10,16 +10,9 @@ import '../app.less';
 
 const Main = () => {
     const [signedIn, setSignedIn] = useState(JSON.parse(localStorage.getItem('signedIn')) || false);
-    const [username, setUsername] = useState(JSON.parse(localStorage.getItem('username')) || '');
-    const [email, setEmail] = useState(JSON.parse(localStorage.getItem('email')) || '');
-    // const [checkedIn, setCheckedIn] = useState(false);
-    const [checkedInLocation, setCheckedInLocation] = useState(JSON.parse(localStorage.getItem(
-        'checkedInLocation'
-    )) || '');
-    // const [checkedInDuration, setCheckedInDuration] = useState('0:00');
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {});
 
     const updateSignedIn = () => {
-        // eslint-disable-next-line no-const-assign
         if (signedIn === false) {
             setSignedIn(true, localStorage.setItem('signedIn', JSON.stringify(true)));
         } else {
@@ -28,14 +21,10 @@ const Main = () => {
     };
 
     const retrieveUserData = () => {
+        // This will send a .get request to the backend instead of to JSON placeholder
         axios.get('https://jsonplaceholder.typicode.com/users/1')
             .then((res) => {
-                const user = res.data;
-                setUsername(user.username, localStorage.setItem('username', JSON.stringify(user.username)));
-                setEmail(user.email, localStorage.setItem('email', JSON.stringify(user.email)));
-                setCheckedInLocation(user.address.city, localStorage.setItem(
-                    'checkedInLocation', JSON.stringify(user.address.city)
-                ));
+                setUser(res.data, localStorage.setItem('user', JSON.stringify(res.data)));
                 updateSignedIn();
             });
     };
@@ -43,7 +32,7 @@ const Main = () => {
     return (
         <Router>
             <Header
-                username={username}
+                user={user}
                 signedIn={signedIn}
                 updateSignedIn={updateSignedIn}/>
             <Route path='/' exact component={Landing}></Route>
@@ -53,9 +42,7 @@ const Main = () => {
             />}/>
             <Route path='/registration' component={Registration}></Route>
             <Route path='/profile' render={props => <Profile {...props}
-                username={username}
-                email={email}
-                checkedInLocation={checkedInLocation}
+                user={user}
             />}></Route>
         </Router>
     );

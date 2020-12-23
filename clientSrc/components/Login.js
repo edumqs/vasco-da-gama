@@ -15,6 +15,10 @@ const Login = (props) => {
 
     const loginUser = (e) => {
         e.preventDefault();
+        // Here need an axios post. request to send
+        // user information to the backend.
+        // But I am just using the JSON placeholder
+        // function in Main.js for now.
         props.retrieveUserData();
     };
 

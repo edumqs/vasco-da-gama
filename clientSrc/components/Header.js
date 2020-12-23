@@ -7,7 +7,7 @@ const Header = (props) => {
         navbarRight = <div><a className="navbar-brand" href="login">Login</a>
             <a className="navbar-brand" href="registration">Register</a></div>;
     } else {
-        navbarRight = <div><a className="navbar-brand">Welcome, {props.username}</a>
+        navbarRight = <div><a className="navbar-brand">Welcome, {props.user.username}</a>
             <a className="navbar-brand" href="login" onClick={props.updateSignedIn}>Sign Out</a></div>;
     }
     return (
