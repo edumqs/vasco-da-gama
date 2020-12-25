@@ -1,8 +1,8 @@
-import React from 'react'
-import '../styles/Header.less'
+import React from 'react';
+import '../styles/Header.less';
 
 const Header = () => {
-    return(
+    return (
         <nav className="navbar navbar-dark bg-primary">
             <div className='navbar-left'>
                 <i className="fab fa-wpexplorer"></i>
@@ -11,9 +11,10 @@ const Header = () => {
             <div className='navbar-right'>
                 <a className="navbar-brand" href="login">Login</a>
                 <a className="navbar-brand" href="registration">Register</a>
+                <a className="navbar-brand" href="map">Map</a>
             </div>
         </nav>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;

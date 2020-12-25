@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import '../styles/Registration.less'
+import React, { useState } from 'react';
+import '../styles/Registration.less';
 
 const Registration = () => {
     const [username, setUsername] = useState('');
@@ -8,36 +8,38 @@ const Registration = () => {
     const [email, setEmail] = useState('');
 
     const handleChanges = (formItemBeingUpdated, e) => {
-        switch(formItemBeingUpdated){
-            case 'username':
-                setUsername(e.target.value)
-                break;
-            case 'password':
-                setPassword(e.target.value)
-                break;
-            case 'dateOfBirth':
-                setDateofBirth(e.target.value)
-                break;
-            case 'email':
-                setEmail(e.target.value)
+        switch (formItemBeingUpdated) {
+        case 'username':
+            setUsername(e.target.value);
+            break;
+        case 'password':
+            setPassword(e.target.value);
+            break;
+        case 'dateOfBirth':
+            setDateofBirth(e.target.value);
+            break;
+        case 'email':
+            setEmail(e.target.value);
+            break;
+        default:
         }
-    }
+    };
 
     const registerUser = (e) => {
-        //This doesn't do anything yet. Will send the user data to the database.
-        e.preventDefault()
-        console.log(username)
-        console.log(password)
-        console.log(dateOfBirth)
-        console.log(email)
-    }
+        // This doesn't do anything yet. Will send the user data to the database.
+        e.preventDefault();
+        // console.log(username);
+        // console.log(password);
+        // console.log(dateOfBirth);
+        // console.log(email);
+    };
 
-    return(
+    return (
         <div className='registration-form'>
             <form method='post' action='#' autoComplete='off'>
                 <div className="form-group">
                     <label htmlFor="usernameInput">Username</label>
-                    <input type="text" 
+                    <input type="text"
                         className="form-control"
                         id="usernameInput"
                         value={username}
@@ -46,7 +48,7 @@ const Registration = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="passwordInput">Password</label>
-                    <input type="password" 
+                    <input type="password"
                         className="form-control"
                         id="passwordInput"
                         value={password}
@@ -55,7 +57,7 @@ const Registration = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="dobInput">Date of Birth</label>
-                    <input type="date" 
+                    <input type="date"
                         className="form-control"
                         id="dobInput"
                         value={dateOfBirth}
@@ -64,7 +66,7 @@ const Registration = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="emailInput">Email</label>
-                    <input type="email" 
+                    <input type="email"
                         className="form-control"
                         id="emailInput"
                         value={email}
@@ -74,7 +76,7 @@ const Registration = () => {
                 <button className='btn btn-primary' onClick={registerUser}>Register</button>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default Registration
+export default Registration;
