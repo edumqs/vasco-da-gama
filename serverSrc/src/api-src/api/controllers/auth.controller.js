@@ -4,10 +4,13 @@ const crypto = require('crypto');
 const jwt = require('jwt-simple');
 const moment = require('moment-timezone');
 
+
 const { jwtSecret } = require('../../../vars');
 const AuthenticationError = require('../utils/AuthenticationError');
 const { jwtExpirationInterval, blackListedEmailDomains } = require('../../../vars');
-const models = require('../../../database/index');
+const sequelize = require('../../../database/index');
+
+console.log(sequelize);
 
 const isEmailBlacklisted = (email) => {
     for (let i = 0; i < blackListedEmailDomains.length; i++) {
@@ -107,6 +110,7 @@ const generateTokenResponse = async (user) => {
  * @public
  */
 exports.register = async (req, res, next) => {
+
     try {
         if (isEmailBlacklisted(req.body.email)) {
             return res.status(403).send({
@@ -115,8 +119,7 @@ exports.register = async (req, res, next) => {
                 message: 'The email provided is blacklisted'
             });
         }
-
-        let user = await models.user.findOne({ where: { email: req.body.email } });
+        let user = await sequelize.models.user.findOne({ where: { email: req.body.email } });
 
         if (user) {
             return res.status(409).json({
@@ -127,14 +130,14 @@ exports.register = async (req, res, next) => {
         }
 
         const userPassword = generateHash(req.body.password);
-        const language = languageValidator(req.body.language);
+        // const language = languageValidator(req.body.language);
 
-        user = await models.user.create({
+        user = await sequelize.models.user.create({
             email: req.body.email,
             password: userPassword,
             firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            language
+            lastName: req.body.lastName
+            // ,language
         });
 
         const tokenData = {

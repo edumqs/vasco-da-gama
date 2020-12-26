@@ -32,7 +32,7 @@
         "semi": "error",
 
         "comma-spacing": ["error", { "before": false, "after": true }],
-        "indent": ["error", 4, {"ObjectExpression": "first"}],
+        "indent": ["error", 4, {"ObjectExpression": "first"}, { "SwitchCase": 1 }],
         "key-spacing": ["error", { "mode": "minimum" }],
         "keyword-spacing": "error",
         "max-len": ["error", 120, {
