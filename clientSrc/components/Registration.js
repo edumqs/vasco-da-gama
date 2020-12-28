@@ -28,7 +28,6 @@ const Registration = () => {
   };
 
   async function registerUser(e) {
-    e.preventDefault();
 
     const registrationData = {
       firstName,
