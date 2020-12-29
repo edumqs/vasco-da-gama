@@ -28,10 +28,10 @@ const Registration = () => {
     const registerUser = (e) => {
         // This doesn't do anything yet. Will send the user data to the database.
         e.preventDefault();
-        // console.log(username);
-        // console.log(password);
-        // console.log(dateOfBirth);
-        // console.log(email);
+        console.log(username);
+        console.log(password);
+        console.log(dateOfBirth);
+        console.log(email);
     };
 
     return (

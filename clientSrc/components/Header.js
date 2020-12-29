@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Header.less';
 
 const Header = () => {
@@ -6,12 +7,12 @@ const Header = () => {
         <nav className="navbar navbar-dark bg-primary">
             <div className='navbar-left'>
                 <i className="fab fa-wpexplorer"></i>
-                <a className="navbar-brand" href="/">Vasco-Da-Gama</a>
+                <Link className="navbar-brand" to="/">Vasco-Da-Gama</Link>
             </div>
             <div className='navbar-right'>
-                <a className="navbar-brand" href="login">Login</a>
-                <a className="navbar-brand" href="registration">Register</a>
-                <a className="navbar-brand" href="map">Map</a>
+                <Link className="navbar-brand" to="login">Login</Link>
+                <Link className="navbar-brand" to="registration">Register</Link>
+                <Link className="navbar-brand" to="map">Map</Link>
             </div>
         </nav>
     );

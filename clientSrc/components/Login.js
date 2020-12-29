@@ -17,8 +17,8 @@ const Login = () => {
         // This doesn't do anything yet. Will check username and password
         // against the database, and allow access if match.
         e.preventDefault();
-        // console.log(username);
-        // console.log(password);
+        console.log(username);
+        console.log(password);
     };
 
     return (
