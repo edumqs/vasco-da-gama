@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Login.less';
 
-const Login = (props) => {
+export default function Login(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -15,11 +15,7 @@ const Login = (props) => {
 
     const loginUser = (e) => {
         e.preventDefault();
-        // Here need an axios post. request to send
-        // user information to the backend.
-        // But I am just using the JSON placeholder
-        // function in Main.js for now.
-        props.retrieveUserData();
+        props.retrieveUserData(username);
     };
 
     return (
@@ -47,6 +43,4 @@ const Login = (props) => {
             </form>
         </div>
     );
-};
-
-export default Login;
+}

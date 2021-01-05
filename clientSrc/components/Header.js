@@ -1,14 +1,14 @@
 import React from 'react';
 import '../styles/Header.less';
 
-const Header = (props) => {
+export default function Header(props) {
     let navbarRight;
     if (props.signedIn === false) {
         navbarRight = <div><a className="navbar-brand" href="login">Login</a>
             <a className="navbar-brand" href="registration">Register</a></div>;
     } else {
-        navbarRight = <div><a className="navbar-brand">Welcome, {props.user.username}</a>
-            <a className="navbar-brand" href="login" onClick={props.updateSignedIn}>Sign Out</a></div>;
+        navbarRight = <div><a href='/profile' className="navbar-brand">Welcome, {props.user.username}</a>
+            <a className="navbar-brand" href="landing" onClick={props.updateSignedIn}>Sign Out</a></div>;
     }
     return (
         <nav className="navbar navbar-dark bg-primary">
@@ -21,7 +21,4 @@ const Header = (props) => {
             </div>
         </nav>
     );
-};
-
-export default Header;
-
+}
