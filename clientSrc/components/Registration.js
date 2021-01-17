@@ -1,52 +1,73 @@
-import React, {useState} from 'react'
-import '../styles/Registration.less'
+import React, { useState } from 'react';
+import '../styles/Registration.less';
+import axios from 'axios';
 
-const Registration = () => {
-    const [username, setUsername] = useState('');
+export default function Registration() {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
-    const [dateOfBirth, setDateofBirth] = useState('');
     const [email, setEmail] = useState('');
 
     const handleChanges = (formItemBeingUpdated, e) => {
-        switch(formItemBeingUpdated){
-            case 'username':
-                setUsername(e.target.value)
-                break;
-            case 'password':
-                setPassword(e.target.value)
-                break;
-            case 'dateOfBirth':
-                setDateofBirth(e.target.value)
-                break;
-            case 'email':
-                setEmail(e.target.value)
+        switch (formItemBeingUpdated) {
+        case 'firstName':
+            setFirstName(e.target.value);
+            break;
+        case 'lastName':
+            setLastName(e.target.value);
+            break;
+        case 'password':
+            setPassword(e.target.value);
+            break;
+        case 'email':
+            setEmail(e.target.value);
+            break;
+        default:
+        // do nothing
+        }
+    };
+
+    async function registerUser(e) {
+        e.preventDefault();
+        const registrationData = {
+            firstName,
+            lastName,
+            email,
+            password
+        };
+        try {
+            const response = await axios.post('http://localhost:9002/api/1/auth/register', registrationData);
+            // eslint-disable-next-line no-console
+            console.log(response);
+        } catch (error) {
+            console.error(error);
         }
     }
 
-    const registerUser = (e) => {
-        //This doesn't do anything yet. Will send the user data to the database.
-        e.preventDefault()
-        console.log(username)
-        console.log(password)
-        console.log(dateOfBirth)
-        console.log(email)
-    }
-
-    return(
+    return (
         <div className='registration-form'>
             <form method='post' action='#' autoComplete='off'>
                 <div className="form-group">
-                    <label htmlFor="usernameInput">Username</label>
-                    <input type="text" 
+                    <label htmlFor="firstNameInput">First Name</label>
+                    <input type="text"
                         className="form-control"
-                        id="usernameInput"
-                        value={username}
-                        onChange={e => handleChanges('username', e)}
+                        id="firstNameInput"
+                        value={firstName}
+                        onChange={e => handleChanges('firstName', e)}
+                    ></input>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="lastNameInput">Last Name</label>
+                    <input type="text"
+                        className="form-control"
+                        id="lastNameInput"
+                        value={lastName}
+                        onChange={e => handleChanges('lastName', e)}
                     ></input>
                 </div>
                 <div className="form-group">
                     <label htmlFor="passwordInput">Password</label>
-                    <input type="password" 
+                    <input type="password"
                         className="form-control"
                         id="passwordInput"
                         value={password}
@@ -54,17 +75,8 @@ const Registration = () => {
                     ></input>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="dobInput">Date of Birth</label>
-                    <input type="date" 
-                        className="form-control"
-                        id="dobInput"
-                        value={dateOfBirth}
-                        onChange={e => handleChanges('dateOfBirth', e)}
-                    ></input>
-                </div>
-                <div className="form-group">
                     <label htmlFor="emailInput">Email</label>
-                    <input type="email" 
+                    <input type="email"
                         className="form-control"
                         id="emailInput"
                         value={email}
@@ -74,7 +86,5 @@ const Registration = () => {
                 <button className='btn btn-primary' onClick={registerUser}>Register</button>
             </form>
         </div>
-    )
+    );
 }
-
-export default Registration

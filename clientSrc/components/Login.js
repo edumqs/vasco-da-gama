@@ -1,32 +1,29 @@
-import React, {useState} from 'react'
-import '../styles/Login.less'
+import React, { useState } from 'react';
+import '../styles/Login.less';
 
-const Login = () => {
+export default function Login(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleUsernameChange = (e) => {
-        setUsername(e.target.value)
-    }
+        setUsername(e.target.value);
+    };
 
     const handlePasswordChange = (e) => {
-        setPassword(e.target.value)
-    }
+        setPassword(e.target.value);
+    };
 
     const loginUser = (e) => {
-        //This doesn't do anything yet. Will check username and password 
-        //against the database, and allow access if match.
-        e.preventDefault()
-        console.log(username)
-        console.log(password)
-    }
+        e.preventDefault();
+        props.retrieveUserData(username);
+    };
 
-    return(
+    return (
         <div className='login-form'>
             <form method='post' action='#' autoComplete='off'>
                 <div className="form-group">
                     <label htmlFor="usernameInput">Username</label>
-                    <input type="text" 
+                    <input type="text"
                         className="form-control"
                         id="usernameInput"
                         value={username}
@@ -35,7 +32,7 @@ const Login = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="passwordInput">Password</label>
-                    <input type="password" 
+                    <input type="password"
                         className="form-control"
                         id="passwordInput"
                         value={password}
@@ -45,7 +42,5 @@ const Login = () => {
                 <button className='btn btn-primary' onClick={loginUser}>Login</button>
             </form>
         </div>
-    )
+    );
 }
-
-export default Login
