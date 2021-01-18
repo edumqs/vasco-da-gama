@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/Login.less';
 
 export default function Login(props) {
+    const history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -13,10 +16,32 @@ export default function Login(props) {
         setPassword(e.target.value);
     };
 
-    const loginUser = (e) => {
-        e.preventDefault();
-        props.retrieveUserData(username);
+    const redirectToMapAfterLoggingIn = () => {
+        history.push('./map');
     };
+
+    // .then((res) => {
+    //     console.log('login');
+    //     console.log(res);
+    //     // setUser(res.data, localStorage.setItem('user', JSON.stringify(res.data)));
+    //     
+    //     redirectToMapAfterLoggingIn();
+    // });
+    async function loginUser(e) {
+        e.preventDefault();
+        const userLogIn = {
+            username,
+            password
+        };
+        try {
+            axios.post('https://app.yawe.dev/api/1/ce/vasco-da-gama/users?key=1f8d0c6bbd604833adfa5d2cf8095ef4&login=true',
+                userLogIn, { withCredentials: true });
+            props.updateSignedIn();
+            redirectToMapAfterLoggingIn();
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className='login-form'>
