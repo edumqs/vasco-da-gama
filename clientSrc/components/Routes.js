@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
+import axios from 'axios';
 import Landing from './Landing';
 import Registration from './Registration';
 import Login from './Login';
@@ -10,20 +11,22 @@ import '../app.less';
 
 const Routes = () => {
     const [signedIn, setSignedIn] = useState(JSON.parse(localStorage.getItem('signedIn')) || false);
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {});
+    // const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {});
 
     const updateSignedIn = () => {
         if (signedIn === false) {
             setSignedIn(true, localStorage.setItem('signedIn', JSON.stringify(true)));
         } else {
             localStorage.clear();
+            // axios.post('https://app.yawe.dev/api/1/ce/vasco-da-gama/users?key=1f8d0c6bbd604833adfa5d2cf8095ef4&logout=true',
+            //     { withCredentials: true });
         }
     };
 
     return (
         <div>
             <Header
-                user={user}
+                // user={user}
                 signedIn={signedIn}
                 updateSignedIn={updateSignedIn}/>
             <Route path='/' exact component={Landing}></Route>
@@ -32,7 +35,7 @@ const Routes = () => {
             />}></Route>
             <Route path='/registration' component={Registration}></Route>
             <Route path='/profile' render={props => <Profile {...props}
-                user={user}
+                // user={user}
             />}></Route>
             <Route path='/map' component={Map}></Route>
         </div>

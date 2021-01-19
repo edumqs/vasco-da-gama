@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import '../styles/Registration.less';
-import axios from 'axios';
 
 export default function Registration() {
     const history = useHistory();
@@ -10,7 +10,6 @@ export default function Registration() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    
     const handleChanges = (formItemBeingUpdated, e) => {
         switch (formItemBeingUpdated) {
         case 'firstName':
@@ -39,17 +38,14 @@ export default function Registration() {
 
     async function registerUser(e) {
         e.preventDefault();
-        const registrationData = {
-            firstName,
-            lastName,
+        const usernameAndPassword = {
             username,
-            password,
-            email
+            password
         };
+        const authEndpoint = 'https://app.yawe.dev/api/1/ce/registering-users?key=1f8d0c6bbd604833adfa5d2cf8095ef4';
         try {
-            const registeredUser = await axios.post('https://app.yawe.dev/api/1/ce/vasco-da-gama/register-users?key=1f8d0c6bbd604833adfa5d2cf8095ef4',
-                registrationData);
-            console.log(registeredUser);
+            const registeredUser = await axios.post(authEndpoint, usernameAndPassword);
+            console.log(registeredUser.data.data);
             redirectToLoginPageAfterRegistering();
         } catch (error) {
             console.error(error);

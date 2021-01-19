@@ -20,22 +20,16 @@ export default function Login(props) {
         history.push('./map');
     };
 
-    // .then((res) => {
-    //     console.log('login');
-    //     console.log(res);
-    //     // setUser(res.data, localStorage.setItem('user', JSON.stringify(res.data)));
-    //     
-    //     redirectToMapAfterLoggingIn();
-    // });
     async function loginUser(e) {
         e.preventDefault();
         const userLogIn = {
             username,
             password
         };
+        const loginEndpoint = 'https://app.yawe.dev/api/1/ce/registering-users?key=1f8d0c6bbd604833adfa5d2cf8095ef4&login=true';
         try {
-            axios.post('https://app.yawe.dev/api/1/ce/vasco-da-gama/users?key=1f8d0c6bbd604833adfa5d2cf8095ef4&login=true',
-                userLogIn, { withCredentials: true });
+            await axios.post(loginEndpoint, userLogIn, { withCredentials: true });
+            console.log(userLogIn.username + 'Signed in');
             props.updateSignedIn();
             redirectToMapAfterLoggingIn();
         } catch (error) {
