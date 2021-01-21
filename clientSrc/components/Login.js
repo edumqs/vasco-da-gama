@@ -29,10 +29,10 @@ export default function Login(props) {
         const loginEndpoint = 'https://app.yawe.dev/api/1/ce/registering-users?key=1f8d0c6bbd604833adfa5d2cf8095ef4&login=true';
         try {
             await axios.post(loginEndpoint, userLogIn, { withCredentials: true });
-            console.log(userLogIn.username + 'Signed in');
-            props.updateSignedIn();
+            props.updateSignedIn(userLogIn.username);
             redirectToMapAfterLoggingIn();
         } catch (error) {
+            alert('User or password not correct');
             console.log(error);
         }
     }

@@ -11,22 +11,23 @@ import '../app.less';
 
 const Routes = () => {
     const [signedIn, setSignedIn] = useState(JSON.parse(localStorage.getItem('signedIn')) || false);
-    // const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {});
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || '');
 
-    const updateSignedIn = () => {
+    const updateSignedIn = (username) => {
         if (signedIn === false) {
             setSignedIn(true, localStorage.setItem('signedIn', JSON.stringify(true)));
+            setUser(username, localStorage.setItem('user', JSON.stringify(username)));
         } else {
             localStorage.clear();
-            // axios.post('https://app.yawe.dev/api/1/ce/vasco-da-gama/users?key=1f8d0c6bbd604833adfa5d2cf8095ef4&logout=true',
-            //     { withCredentials: true });
+            axios.post('https://app.yawe.dev/api/1/ce/vasco-da-gama/users?key=1f8d0c6bbd604833adfa5d2cf8095ef4&logout=true',
+                { withCredentials: true });
         }
     };
 
     return (
         <div>
             <Header
-                // user={user}
+                user={user}
                 signedIn={signedIn}
                 updateSignedIn={updateSignedIn}/>
             <Route path='/' exact component={Landing}></Route>
