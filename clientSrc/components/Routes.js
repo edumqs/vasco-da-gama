@@ -30,7 +30,9 @@ const Routes = () => {
                 user={user}
                 signedIn={signedIn}
                 updateSignedIn={updateSignedIn}/>
-            <Route path='/' exact component={Landing}></Route>
+            <Route exact path='/' render={props => <Landing {...props}
+                signedIn={signedIn}
+            />}></Route>
             <Route path='/login' render={props => <Login {...props}
                 updateSignedIn={updateSignedIn}
             />}></Route>
