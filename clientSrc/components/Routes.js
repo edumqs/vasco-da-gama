@@ -36,7 +36,7 @@ const Routes = () => {
             />}></Route>
             <Route path='/registration' component={Registration}></Route>
             <Route path='/profile' render={props => <Profile {...props}
-                // user={user}
+                user={user}
             />}></Route>
             <Route path='/map' component={Map}></Route>
         </div>

@@ -7,7 +7,7 @@ export default function Landing() {
             <div className='landing-blurb'>
                 <h2>“Vasco da Gama” - Explore the world and meet others in your vicinity!</h2>
             </div>
-            <a className='registration-button btn btn-primary' href='registration'>Register</a>
+            <a className='registration-button btn btn-warning' href='registration'>Register</a>
         </div>
     );
 }
