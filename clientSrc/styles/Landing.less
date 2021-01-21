@@ -1,7 +1,52 @@
 /*LANDING PAGE*/
+.landing-container {
+    background-image: url("https://cdn.mapsinternational.co.uk/pub/media/catalog/product/cache/9408c2af9b2aa1f0e92b23ce5de2be46/w/o/world-wall-map-political-without-flags_wm00001_h.jpg");
+    background-repeat: no-repeat; 
+    background-size: cover;
+    height: 800px;
+    width: 100vw;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .landing-blurb {
-    text-align: center;
-    width: 400px;
-    margin: 0 auto;
-    padding-top: 50px;
+    font-family: 'Krub', sans-serif;
+    font-weight: 800;
+    padding-left: 20px;
+    padding-top: 100px;
+    position: fixed;
+    top: 150px;
+    left: 100px;
+    height: 300px;
+    width: 1100px;
+    background-color: rgb(56, 142, 253);
+    opacity: 0.8;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    animation: slideInInformation 0.5s;
+}
+
+@keyframes slideInInformation {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 0.7;
+        transform: translateX(0);
+    }
+}
+
+.registration-button {
+    font-family: 'Krub', sans-serif;
+    position: fixed;
+    top: 470px;
+    left: 100px;
 }

@@ -3,11 +3,11 @@ import '../styles/Landing.less';
 
 export default function Landing() {
     return (
-        <div className='landing-blurb'>
-            <h2>Project “Vasco da Gama” - Explore and meet The idea of this project is to
-            create an application to allow users to explore the globe and at the same time
-            meet new people.</h2>
-            <a href='registration' className='btn btn-primary'>Register</a>
+        <div className='landing-container'>
+            <div className='landing-blurb'>
+                <h2>“Vasco da Gama” - Explore the world and meet others in your vicinity!</h2>
+            </div>
+            <a className='registration-button btn btn-primary' href='registration'>Register</a>
         </div>
     );
 }
