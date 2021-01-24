@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import APIEndpoints from '../api';
 import '../styles/Registration.less';
 
 export default function Registration() {
@@ -42,9 +43,8 @@ export default function Registration() {
             username,
             password
         };
-        const authEndpoint = 'https://app.yawe.dev/api/1/ce/registering-users?key=1f8d0c6bbd604833adfa5d2cf8095ef4';
         try {
-            const registeredUser = await axios.post(authEndpoint, usernameAndPassword);
+            const registeredUser = await axios.post(APIEndpoints.registration, usernameAndPassword);
             console.log(registeredUser.data.data);
             redirectToLoginPageAfterRegistering();
         } catch (error) {

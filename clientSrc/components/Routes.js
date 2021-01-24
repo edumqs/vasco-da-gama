@@ -7,6 +7,7 @@ import Login from './Login';
 import Header from './Header';
 import Profile from './Profile';
 import Map from './Map';
+import APIEndpoints from '../api';
 import '../app.less';
 
 const Routes = () => {
@@ -19,8 +20,7 @@ const Routes = () => {
             setUser(username, localStorage.setItem('user', JSON.stringify(username)));
         } else {
             localStorage.clear();
-            axios.post('https://app.yawe.dev/api/1/ce/vasco-da-gama/users?key=1f8d0c6bbd604833adfa5d2cf8095ef4&logout=true',
-                { withCredentials: true });
+            axios.post(APIEndpoints.logout, { withCredentials: true });
         }
     };
 
