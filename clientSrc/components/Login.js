@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import APIEndpoints from '../api';
 import '../styles/Login.less';
 
 export default function Login(props) {
+    const history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -13,10 +17,25 @@ export default function Login(props) {
         setPassword(e.target.value);
     };
 
-    const loginUser = (e) => {
-        e.preventDefault();
-        props.retrieveUserData(username);
+    const redirectToMapAfterLoggingIn = () => {
+        history.push('./map');
     };
+
+    async function loginUser(e) {
+        e.preventDefault();
+        const userLogIn = {
+            username,
+            password
+        };
+        try {
+            await axios.post(APIEndpoints.login, userLogIn, { withCredentials: true });
+            props.updateSignedIn(userLogIn.username);
+            redirectToMapAfterLoggingIn();
+        } catch (error) {
+            alert('User or password not correct');
+            console.log(error);
+        }
+    }
 
     return (
         <div className='login-form'>

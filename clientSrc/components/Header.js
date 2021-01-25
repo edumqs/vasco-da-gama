@@ -7,8 +7,8 @@ export default function Header(props) {
         navbarRight = <div><a className="navbar-brand" href="login">Login</a>
             <a className="navbar-brand" href="registration">Register</a></div>;
     } else {
-        navbarRight = <div><a href='/profile' className="navbar-brand">Welcome, {props.user.username}</a>
-            <a className="navbar-brand" href="landing" onClick={props.updateSignedIn}>Sign Out</a></div>;
+        navbarRight = <div><a href='/profile' className="navbar-brand">Welcome {props.user}</a>
+            <a className="navbar-brand" href="/" onClick={props.updateSignedIn}>Sign Out</a></div>;
     }
     return (
         <nav className="navbar navbar-dark bg-primary">

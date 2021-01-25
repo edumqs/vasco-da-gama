@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import '../styles/Registration.less';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import APIEndpoints from '../api';
+import '../styles/Registration.less';
 
 export default function Registration() {
+    const history = useHistory();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-
     const handleChanges = (formItemBeingUpdated, e) => {
         switch (formItemBeingUpdated) {
         case 'firstName':
@@ -15,6 +18,9 @@ export default function Registration() {
             break;
         case 'lastName':
             setLastName(e.target.value);
+            break;
+        case 'username':
+            setUsername(e.target.value);
             break;
         case 'password':
             setPassword(e.target.value);
@@ -27,18 +33,20 @@ export default function Registration() {
         }
     };
 
+    const redirectToLoginPageAfterRegistering = () => {
+        history.push('./login');
+    };
+
     async function registerUser(e) {
         e.preventDefault();
-        const registrationData = {
-            firstName,
-            lastName,
-            email,
+        const usernameAndPassword = {
+            username,
             password
         };
         try {
-            const response = await axios.post('http://localhost:9002/api/1/auth/register', registrationData);
-            // eslint-disable-next-line no-console
-            console.log(response);
+            const registeredUser = await axios.post(APIEndpoints.registration, usernameAndPassword);
+            console.log(registeredUser.data.data);
+            redirectToLoginPageAfterRegistering();
         } catch (error) {
             console.error(error);
         }
@@ -63,6 +71,15 @@ export default function Registration() {
                         id="lastNameInput"
                         value={lastName}
                         onChange={e => handleChanges('lastName', e)}
+                    ></input>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="lastNameInput">Username</label>
+                    <input type="text"
+                        className="form-control"
+                        id="usernameInput"
+                        value={username}
+                        onChange={e => handleChanges('username', e)}
                     ></input>
                 </div>
                 <div className="form-group">
