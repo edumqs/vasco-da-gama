@@ -1,5 +1,5 @@
 import React from 'react';
-import travelImage from '../travel.svg';
+import travelImage from '../svg/travel.svg';
 import '../styles/Landing.less';
 
 export default function Landing(props) {
